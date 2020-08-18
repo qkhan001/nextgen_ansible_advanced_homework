@@ -9,6 +9,19 @@
     backup: yes
 
 - name: enable repos
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo 
  
 - name: install base tools and packages
+  yum:
+    name:
+      - git
+      - python3
+      - pip
+      - ansible
+      - openstacksdk
+      - selinux
+    state: installed
 
