@@ -4,9 +4,11 @@
     os_server_facts:
       cloud: openstack
     register: result
-  - name: Delete instances
-    os_server:
-      cloud: ospcloud
-      name: "{{ item.name }}"
-      state: absent
-    loop: "{{result.openstack_servers}}"
+  - debug:
+      msg: "{{ result }}"
+#  - name: Delete instances
+#    os_server:
+#      cloud: ospcloud
+#      name: "{{ item.name }}"
+#      state: absent
+#    loop: "{{result.openstack_servers}}"
