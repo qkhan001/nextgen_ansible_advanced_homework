@@ -3,6 +3,7 @@
   - name: Fetch Instance Info
     os_server_facts:
       cloud: openstack
+    register: result
   - name: Delete instances
     os_server:
       cloud: ospcloud
