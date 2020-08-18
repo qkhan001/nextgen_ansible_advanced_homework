@@ -9,23 +9,24 @@
     backup: yes
 
 - name: enable repos
-  yum_repository:
-    name: epel
-    description: EPEL YUM repo
-    baseurl: http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo 
-    enabled: yes
+  copy:
+    src: http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo 
+    dest: /etc/yum.repos.d/epel.repo
+    remote_src: yes
+
  
-#- name: install base tools and packages
-#  yum:
-#    name:
-#      - git
-#      - python3
-#      - pip
-#      - ansible
-#      - openstacksdk
-#      - selinux
-#    enablerepo: epel
-- name: Install openstack library
-  command: pip3 install ansible openstacksdk -U
-  state: installed
+- name: install base tools and packages
+  yum:
+    name:
+      - git
+      - python3
+      - pip
+      - ansible
+      - openstacksdk
+      - selinux
+    enablerepo: epel
+
+#- name: Install openstack library
+#  command: pip3 install ansible openstacksdk -U
+#  state: installed
 
