@@ -15,15 +15,17 @@
     baseurl: http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo 
     enabled: yes
  
-- name: install base tools and packages
-  yum:
-    name:
-      - git
-      - python3
-      - pip
-      - ansible
-      - openstacksdk
-      - selinux
-    enablerepo: epel
-    state: installed
+#- name: install base tools and packages
+#  yum:
+#    name:
+#      - git
+#      - python3
+#      - pip
+#      - ansible
+#      - openstacksdk
+#      - selinux
+#    enablerepo: epel
+- name: Install openstack library
+  command: pip3 install ansible openstacksdk -U
+  state: installed
 
