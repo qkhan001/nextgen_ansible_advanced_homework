@@ -13,6 +13,7 @@
     name: epel
     description: EPEL YUM repo
     baseurl: http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo 
+    enabled: yes
  
 - name: install base tools and packages
   yum:
@@ -23,5 +24,6 @@
       - ansible
       - openstacksdk
       - selinux
+    enablerepo: epel
     state: installed
 
