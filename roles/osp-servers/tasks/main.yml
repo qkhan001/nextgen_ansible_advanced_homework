@@ -17,7 +17,9 @@
     userdata: |
       #!/bin/bash
       curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+      curl -o /tmp/openstack.pem http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pem
       cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
+      cp /tmp/openstack.pem /home/cloud-user/.ssh/.
   with_subelements:
     - "{{osp_servers}}"
     - meta
