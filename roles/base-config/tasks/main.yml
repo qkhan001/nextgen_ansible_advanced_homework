@@ -17,9 +17,8 @@
 - name: install base tools and packages
   yum:
     name:
-      - git
+#      - git
       - python3
-    enablerepo: epel
 
 #- name: Install openstack library
 #  command: pip3 install ansible openstacksdk -U
