@@ -17,6 +17,8 @@
     mode: 0644
     force: yes
 
+- name: enable epel 
+  shell: yum-config-manager --enable epel.repo 
  
 - name: install base tools and packages
   yum:
