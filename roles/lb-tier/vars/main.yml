@@ -1,1 +1,4 @@
+---
+load_balancer_packages:
+  - haproxy
 payload: haproxy
