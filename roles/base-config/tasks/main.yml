@@ -12,6 +12,10 @@
   get_url:
     url: http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo 
     dest: /etc/yum.repos.d/epel.repo
+    owner: root
+    group: root
+    mode: 0644
+    force: yes
 
  
 - name: install base tools and packages
