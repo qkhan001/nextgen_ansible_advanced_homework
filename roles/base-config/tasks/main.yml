@@ -18,11 +18,11 @@
     force: yes
 
  
-- name: install base tools and packages
-  yum:
-    name:
+#- name: install base tools and packages
+#  yum:
+#    name:
 #      - git
-      - python3
+#      - python3
 
 #- name: Install openstack library
 #  command: pip3 install ansible openstacksdk -U
