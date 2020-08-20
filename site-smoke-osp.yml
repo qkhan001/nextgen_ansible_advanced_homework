@@ -14,13 +14,12 @@
         - "{{ item.metadata.group }}"
         - "{{ item.metadata.deployment_name }}"
     loop: "{{ r_os_servers.openstack_servers }}"
+    register: fehost
     when: item.metadata.group == 'frontend'
 
-#  - name: Print records
-#    debug:
-#      msg: "{{ item.accessIPv4 }} "  
-#    loop: "{{ r_os_servers.openstack_servers }}"
-#    when: item.metadata.group == 'frontend'
+  - name: Print records
+    debug:
+      msg: "{{ fehost }} "  
 
   - name: Check webserver for correct response
     uri:
@@ -31,9 +30,13 @@
     loop: "{{ r_os_servers.openstack_servers }}"
     when:  item.metadata.group == 'frontend'
 
+  - name: Print records
+    debug:
+      msg: "{{ results }} "  
+
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
-    when: "'Ansible has done its job' not in webpage.results[0].content"
+    when: "'Ansible has done its job' not in results.content"
     tags:
       - osp.smoke
 
