@@ -34,9 +34,9 @@
     debug:
       msg: "{{ results }}"  
 
-#  - name: Fail if 'Ansible has done its job' is not in the page content
-#    fail:
-#    when: "'Ansible has done its job' not in results"
-#    tags:
-#      - osp.smoke
+  - name: Fail if 'Ansible has done its job' is not in the page content
+    fail:
+    when: "'Ansible has done its job' not in results.content"
+    tags:
+      - osp.smoke
 
