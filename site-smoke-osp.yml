@@ -17,7 +17,7 @@
 
   - name: Print records
     debug:
-      msg: "{{ item.interface_ip }}"  
+      msg: "{{ item.interface_ip }} ---DONE"  
     loop: "{{ r_os_servers.openstack_servers }}"
     when:  item.metadata.group == 'apps'
 
