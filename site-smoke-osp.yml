@@ -32,7 +32,7 @@
 
   - name: Print records
     debug:
-      msg: "{{ results }}"  
+      msg: "{{ results.content }}"  
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
