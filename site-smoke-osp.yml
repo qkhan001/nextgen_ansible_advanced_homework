@@ -17,18 +17,13 @@
 
   - name: Print records
     debug:
-      msg: "{{ item.interface_ip }} ---DONE"  
+      msg: "{{ item.accessIPv4 }} "  
     loop: "{{ r_os_servers.openstack_servers }}"
     when:  item.metadata.group == 'apps'
 
 
 
 
-#      var: item.name
-#    with_items:
-#      - "{{ result.openstack_servers}}"
-#    tags:
-#      - test.servers
 
 #  - name: Check webserver for correct response
 #      uri:
