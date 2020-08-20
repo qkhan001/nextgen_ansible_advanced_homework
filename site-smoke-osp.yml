@@ -10,11 +10,13 @@
 
   - name: Print records
     debug:
-      var: item.name
-    with_items:
-      - "{{ result.openstack_servers}}"
-    tags:
-      - test.servers
+      msg: "{{ result }}"
+
+#      var: item.name
+#    with_items:
+#      - "{{ result.openstack_servers}}"
+#    tags:
+#      - test.servers
 
 #  - name: Check webserver for correct response
 #      uri:
