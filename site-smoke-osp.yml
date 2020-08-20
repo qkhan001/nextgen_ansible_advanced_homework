@@ -23,7 +23,7 @@
 
   - name: Check webserver for correct response
     uri:
-      url: "{{ item.accessIPv4 }}"
+      url: "http://{{ item.accessIPv4 }}/index.html"
       return_content: yes
     register: results
     delegate_to: localhost
