@@ -17,8 +17,8 @@
 
   - name: Print records
     debug:
-      msg: "{{ r_os_servers }}"
-
+      msg: "{{ item.name }}  {{ item.name }}"
+    loop: "{{ r_os_servers.openstack_servers }}"
 #      var: item.name
 #    with_items:
 #      - "{{ result.openstack_servers}}"
