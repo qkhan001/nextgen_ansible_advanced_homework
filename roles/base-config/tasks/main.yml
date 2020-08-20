@@ -8,17 +8,11 @@
     replace: 'Defaults  !requiretty'
     backup: yes
 
-- name: enable repos
-  get_url:
-    url: http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo 
-    dest: /etc/yum.repos.d/epel.repo
-    owner: root
-    group: root
-    mode: 0644
-    force: yes
+- name: add repo
+  shell: yum-config-manager --add-repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
 
-- name: enable epel 
-  shell: yum-config-manager --enable epel.repo 
+- name: enable repo 
+  shell: yum-config-manager --enable internal.repo 
  
 - name: install base tools and packages
   yum:
