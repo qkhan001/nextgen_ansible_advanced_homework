@@ -9,10 +9,13 @@
     backup: yes
 
 - name: add repo
-  shell: yum-config-manager --add-repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
+  template:
+    src: repo_template.j2
+    dest: /etc/yum.repos.d/epel.repo
+   
 
 - name: enable repo 
-  shell: yum-config-manager --enable internal.repo 
+  shell: yum-config-manager --enable epel.repo 
  
 - name: install base tools and packages
   yum:
