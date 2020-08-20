@@ -28,7 +28,7 @@
     register: results
     delegate_to: localhost
     loop: "{{ r_os_servers.openstack_servers }}"
-    when:  item.metadata.group == 'frontend'
+    when:  item.metadata.group == 'frontends'
 
   - name: Print records
     debug:
