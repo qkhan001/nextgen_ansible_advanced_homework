@@ -23,7 +23,7 @@
 
   - name: Check webserver for correct response
     uri:
-      url: "{{ r_os_servers.openstack_Servers.accessIPv4 }}"
+      url: "{{ item.accessIPv4 }}"
       return_content: yes
     register: results
     delegate_to: localhost
