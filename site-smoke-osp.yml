@@ -15,25 +15,28 @@
         - "{{ item.metadata.deployment_name }}"
     loop: "{{ r_os_servers.openstack_servers }}"
 
+#  - name: Print records
+#    debug:
+#      msg: "{{ item.accessIPv4 }} "  
+#    loop: "{{ r_os_servers.openstack_servers }}"
+#    when:  item.metadata.group == 'frontend'
+
+  - name: Check webserver for correct response
+    uri:
+      url: "{{ r_os_servers.openstack_Servers.accessIPv4 }}"
+      return_content: yes
+    register: results
+    delegate_to: localhost
+    loop: "{{ r_os_servers.openstack_servers.accessIPv4 }}"
+    when:  item.metadata.group == 'frontend'
+
+  - name: Fail if 'Ansible has done its job' is not in the page content
+    fail:
+    when: "'Ansible has done its job' not in webpage.results[0].content"
+    tags:
+      - osp.smoke
+
   - name: Print records
     debug:
-      msg: "{{ item.accessIPv4 }} "  
-    loop: "{{ r_os_servers.openstack_servers }}"
-    when:  item.metadata.group == 'apps'
+      msg: "{{ results }} "  
 
-
-
-
-
-#  - name: Check webserver for correct response
-#      uri:
-#        url: "http://frontend1.{{ GUID }}.example.opentlc.com"
-#        return_content: yes
-#      register: result
-#      delegate_to: localhost
-
-#  - name: Fail if 'Ansible has done its job' is not in the page content
-#    fail:
-#    when: "'Ansible has done its job' not in webpage.results[0].content"
-#    tags:
-#      - osp.smoke
