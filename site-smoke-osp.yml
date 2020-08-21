@@ -16,21 +16,31 @@
     loop: "{{ r_os_servers.openstack_servers }}"
     when: item.metadata.group == 'frontends'
 
-  - name: Check webserver for correct response
-    uri:
-      url: "http://{{ item.accessIPv4 }}/index.html"
-      return_content: yes
+
+  - name: capture frontend IP
+    set_fact:
+      frontendIP: "{{ r_os_servers.openstack_servers.accessIPv4 }}"
     loop: "{{ r_os_servers.openstack_servers }}"
-    when:  item.metadata.group == 'frontends'
-    register: thiscontent 
+    when: item.metadata.group == 'frontends'
 
-  - name: Print records
-    debug:
-      msg: "{{ inventory_hostname }}"  
+  - debug:
+      msg: "{{ frontendIP }}"
 
-  - name: Fail if 'Ansible has done its job' is not in the page content
-    fail:
-    when: "'Ansible has done its job' not in results.content"
-    tags:
-      - osp.smoke
+#  - name: Check webserver for correct response
+#    uri:
+#      url: "http://{{ frontendIP }}/index.html"
+#      return_content: yes
+#    loop: "{{ r_os_servers.openstack_servers }}"
+#    when:  item.metadata.group == 'frontends'
+#    register: thiscontent 
+
+#  - name: Print records
+#    debug:
+#      msg: "{{ inventory_hostname }}"  
+#
+#  - name: Fail if 'Ansible has done its job' is not in the page content
+#    fail:
+#    when: "'Ansible has done its job' not in results.content"
+#    tags:
+#      - osp.smoke
 
