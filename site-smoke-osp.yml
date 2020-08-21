@@ -8,7 +8,7 @@
       server: front*
     register: r_os_servers
   - debug:
-      msg: "{{ r_os_Servers.openstack_servers }}"
+      msg: "{{ r_os_servers.openstack_servers }}"
 
 #  - name: Add host
 #    add_host:
