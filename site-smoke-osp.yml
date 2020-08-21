@@ -5,26 +5,29 @@
     os_server_info:
       cloud: openstack
       region_name: regionOne
+      server: front*
     register: r_os_servers
-
-  - name: Add host
-    add_host:
-      name: "{{ item.public_v4 }}"
-      group:
-        - "{{ item.metadata.group }}"
-        - "{{ item.metadata.deployment_name }}"
-    loop: "{{ r_os_servers.openstack_servers }}"
-    when: item.metadata.group == 'frontends'
-
-
-  - name: capture frontend IP
-    set_fact:
-      frontendIP: "{{ r_os_servers.openstack_servers.accessIPv4 }}"
-    when: item.metadata.group == 'frontends'
-    loop: "{{ r_os_servers.openstack_servers }}"
-
   - debug:
-      msg: "{{ frontendIP }}"
+      msg: "{{ r_os_Servers.openstack_servers }}"
+
+#  - name: Add host
+#    add_host:
+#      name: "{{ item.public_v4 }}"
+#      group:
+#        - "{{ item.metadata.group }}"
+#        - "{{ item.metadata.deployment_name }}"
+#    loop: "{{ r_os_servers.openstack_servers }}"
+#    when: item.metadata.group == 'frontends'
+
+
+#  - name: capture frontend IP
+#    set_fact:
+#      frontendIP: "{{ r_os_servers.openstack_servers.accessIPv4 }}"
+#    when: item.metadata.group == 'frontends'
+#    loop: "{{ r_os_servers.openstack_servers }}"
+
+#  - debug:
+#      msg: "{{ frontendIP }}"
 
 #  - name: Check webserver for correct response
 #    uri:
