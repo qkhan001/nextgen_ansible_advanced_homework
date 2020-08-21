@@ -7,32 +7,36 @@
       region_name: regionOne
       server: front*
     register: r_os_servers
-
-  - name: Add host
-    add_host:
-      name: "{{ r_os_servers.openstack_servers.public_v4 }}"
-      group:
-        - "{{ r_os_servers.openstack_servers.metadata.group }}"
-        - "{{ r_os_servers.openstack_servers.metadata.deployment_name }}"
-
-
-  - name: capture frontend IP
-    set_fact:
-      frontendIP: "{{ r_os_servers.openstack_servers.accessIPv4 }}"
-
+  
   - debug:
-      msg: "{{ frontendIP }}"
+      msg: "{{ r_os_servers.openstack_servers }}"
 
-  - name: Check webserver for correct response
-    uri:
-      url: "http://{{ frontendIP }}/index.html"
-      return_content: yes
-    register: results 
+
+#  - name: Add host
+#    add_host:
+#      name: "{{ r_os_servers.openstack_servers.public_v4 }}"
+#      group:
+#        - "{{ r_os_servers.openstack_servers.metadata.group }}"
+#        - "{{ r_os_servers.openstack_servers.metadata.deployment_name }}"
+
+
+#  - name: capture frontend IP
+#    set_fact:
+#      frontendIP: "{{ r_os_servers.openstack_servers.accessIPv4 }}"
+#
+#  - debug:
+#      msg: "{{ frontendIP }}"
+
+#  - name: Check webserver for correct response
+#    uri:
+#      url: "http://{{ frontendIP }}/index.html"
+#      return_content: yes
+#    register: results 
 
 #
-  - name: Fail if 'Ansible has done its job' is not in the page content
-    fail:
-    when: "'Ansible has done its job' not in results.content"
-    tags:
-      - osp.smoke
+#  - name: Fail if 'Ansible has done its job' is not in the page content
+#    fail:
+#    when: "'Ansible has done its job' not in results.content"
+#    tags:
+#      - osp.smoke
 
