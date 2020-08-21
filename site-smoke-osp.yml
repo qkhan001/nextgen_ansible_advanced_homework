@@ -10,7 +10,7 @@
 
   - name: Add host
     add_host:
-      name: "{{ r_os_servers.openstack_servers..public_v4 }}"
+      name: "{{ r_os_servers.openstack_servers.public_v4 }}"
       group:
         - "{{ r_os_servers.openstack_servers.metadata.group }}"
         - "{{ r_os_servers.openstack_servers.metadata.deployment_name }}"
