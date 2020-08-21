@@ -14,25 +14,19 @@
         - "{{ item.metadata.group }}"
         - "{{ item.metadata.deployment_name }}"
     loop: "{{ r_os_servers.openstack_servers }}"
-    register: fehost
     when: item.metadata.group == 'frontends'
-
-  - name: Print records
-    debug:
-      msg: "{{ fehost }} "  
 
   - name: Check webserver for correct response
     uri:
       url: "http://{{ item.accessIPv4 }}/index.html"
       return_content: yes
-    register: results
-#    delegate_to: localhost
     loop: "{{ r_os_servers.openstack_servers }}"
     when:  item.metadata.group == 'frontends'
+    register: thiscontent 
 
   - name: Print records
     debug:
-      msg: "{{ results.content }}"  
+      msg: "{{ inventory_hostname }}"  
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
