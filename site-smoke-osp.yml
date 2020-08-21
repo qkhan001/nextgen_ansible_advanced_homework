@@ -9,7 +9,7 @@
     register: r_os_servers
   
   - debug:
-      msg: "{{ r_os_servers.openstack_servers.public_v4 }}"
+      msg: "{{ r_os_servers.openstack_servers.flavor }}"
 
 
 #  - name: Add host
